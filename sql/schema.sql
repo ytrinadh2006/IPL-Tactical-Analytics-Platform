@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS teams (id SERIAL PRIMARY KEY, name TEXT UNIQUE NOT NULL);
+CREATE TABLE IF NOT EXISTS venues (id SERIAL PRIMARY KEY, name TEXT UNIQUE NOT NULL);
+CREATE TABLE IF NOT EXISTS seasons (id SERIAL PRIMARY KEY, name TEXT UNIQUE NOT NULL);
+CREATE TABLE IF NOT EXISTS players (id SERIAL PRIMARY KEY, name TEXT UNIQUE NOT NULL);
+CREATE TABLE IF NOT EXISTS matches (id BIGINT PRIMARY KEY, season TEXT, match_date DATE, venue TEXT, city TEXT, team1 TEXT, team2 TEXT, toss_winner TEXT, toss_decision TEXT, winner TEXT, result TEXT, result_margin NUMERIC, player_of_match TEXT);
+CREATE TABLE IF NOT EXISTS deliveries (match_id BIGINT, inning INT, batting_team TEXT, bowling_team TEXT, over INT, ball INT, batter TEXT, bowler TEXT, non_striker TEXT, batsman_runs INT, extra_runs INT, total_runs INT, extras_type TEXT, is_wicket INT, player_dismissed TEXT, dismissal_kind TEXT, fielder TEXT);
+CREATE INDEX IF NOT EXISTS idx_deliveries_match ON deliveries(match_id);
+CREATE INDEX IF NOT EXISTS idx_deliveries_batter ON deliveries(batter);
+CREATE INDEX IF NOT EXISTS idx_deliveries_bowler ON deliveries(bowler);
+CREATE INDEX IF NOT EXISTS idx_matches_season ON matches(season);

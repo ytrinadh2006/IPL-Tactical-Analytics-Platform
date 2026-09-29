@@ -1,0 +1,125 @@
+feature,mean_shap
+numeric__team_a_matches,0.04200496871456846
+numeric__team_b_win_rate,0.025952044305795112
+categorical__team_b_Chennai Super Kings,0.018786961296156444
+numeric__venue_matches_before,0.013805637486731661
+categorical__season_2012,0.012658905505441104
+categorical__venue_Eden Gardens,0.011050849066861306
+numeric__team_a_win_rate,0.011019959686333548
+"categorical__venue_MA Chidambaram Stadium, Chepauk, Chennai",0.010130915061789463
+categorical__team_a_Mumbai Indians,0.00990520012855191
+"categorical__venue_Rajiv Gandhi International Stadium, Uppal",0.008135208897349547
+categorical__season_2013,0.007328178062942759
+categorical__team_b_Delhi Capitals,0.0067448632966249245
+numeric__team_a_recent_matches,0.005873829647449355
+categorical__venue_Barabati Stadium,0.004685417359121609
+categorical__venue_Maharashtra Cricket Association Stadium,0.003850283495303656
+categorical__venue_Brabourne Stadium,0.003700361430446083
+categorical__venue_New Wanderers Stadium,0.0036608706616316987
+numeric__recent_win_rate_diff,0.0035484269652453753
+numeric__venue_chasing_win_rate,0.0034140937651748276
+categorical__team_a_Deccan Chargers,0.003262961546389395
+categorical__team_a_Kolkata Knight Riders,0.003230440014103351
+categorical__season_2019,0.0030324063815616665
+categorical__season_2018,0.002913575570623803
+numeric__h2h_win_diff,0.0027717134624186813
+categorical__venue_Kingsmead,0.002519155418459176
+numeric__team_a_recent_win_rate,0.0024580702796608666
+categorical__season_2021,0.002087784007102186
+categorical__team_b_Royal Challengers Bengaluru,0.0019611106806135454
+categorical__season_2017,0.0018621924636596063
+numeric__career_win_rate_diff,0.001798098422464179
+categorical__season_2009,0.0013776816076465559
+"categorical__venue_Vidarbha Cricket Association Stadium, Jamtha",0.0011993194295112422
+numeric__team_b_recent_matches,0.0011235612463906123
+categorical__team_b_Rising Pune Supergiants,0.0011096617190239774
+categorical__team_a_Rising Pune Supergiants,0.001028883488080194
+numeric__team_a_recent_wins,0.0010089591830713146
+numeric__recent_wins_diff,0.0009747480247956458
+categorical__venue_Rajiv Gandhi International Stadium,0.0009425611962987722
+categorical__venue_Shaheed Veer Narayan Singh International Stadium,0.0009394305520783772
+categorical__venue_Green Park,0.0008418065471547238
+"categorical__venue_Wankhede Stadium, Mumbai",0.0007912106683518084
+categorical__team_b_Punjab Kings,0.000581334103447419
+"categorical__venue_Brabourne Stadium, Mumbai",0.0005754964091818615
+categorical__venue_Arun Jaitley Stadium,0.0005173138711521436
+categorical__venue_Himachal Pradesh Cricket Association Stadium,0.0005062641395341119
+categorical__venue_Buffalo Park,0.00047506650240307645
+categorical__season_2011,0.0004553880752352323
+categorical__team_b_Gujarat Lions,0.00042073050681030197
+categorical__venue_De Beers Diamond Oval,0.0003937781184354707
+numeric__team_a_runs_per_match,0.0003443289165924723
+categorical__team_b_Kochi Tuskers Kerala,0.0003432099269656192
+numeric__runs_per_match_diff,0.00023662868919876028
+categorical__venue_M Chinnaswamy Stadium,0.0002271389237322966
+categorical__venue_Punjab Cricket Association IS Bindra Stadium,0.00019184917874946967
+categorical__venue_Holkar Cricket Stadium,0.00017185986715674136
+numeric__team_b_recent_wins,0.00012164729984772194
+"categorical__venue_Zayed Cricket Stadium, Abu Dhabi",0.00011492391894848042
+"categorical__venue_Narendra Modi Stadium, Ahmedabad",0.00010134544928187163
+categorical__venue_Wankhede Stadium,3.0829424104262084e-05
+categorical__team_b_Sunrisers Hyderabad,2.909245962623486e-05
+categorical__venue_OUTsurance Oval,-1.1121726779101539e-05
+"categorical__venue_Punjab Cricket Association Stadium, Mohali",-1.280191630901113e-05
+numeric__toss_team_a_won,-1.7065172373882376e-05
+numeric__toss_team_b_won,-1.7065172373882376e-05
+categorical__venue_MA Chidambaram Stadium,-0.00021768704967132688
+numeric__team_a_wickets_per_match,-0.00024085202769762423
+numeric__team_b_matches,-0.0002797472038040058
+categorical__team_b_Rajasthan Royals,-0.0003309857290289827
+categorical__venue_Newlands,-0.00040316105354991377
+categorical__venue_JSCA International Stadium Complex,-0.00043821859293091605
+categorical__team_a_Chennai Super Kings,-0.00047632967478348056
+numeric__team_b_recent_win_rate,-0.0005029847353381628
+categorical__team_a_Kochi Tuskers Kerala,-0.00053119413575381
+categorical__team_a_Delhi Capitals,-0.0006230706049745048
+"categorical__venue_Arun Jaitley Stadium, Delhi",-0.0006725663262640396
+categorical__season_2007/08,-0.0008489913898421985
+numeric__wickets_per_match_diff,-0.0008492582222634312
+numeric__runs_conceded_diff,-0.0008881176353453493
+categorical__team_b_Kolkata Knight Riders,-0.0009074118828979302
+categorical__season_2020/21,-0.0009507275961419635
+numeric__team_a_runs_conceded_per_match,-0.0009872014723279168
+categorical__venue_Nehru Stadium,-0.0009961408071731106
+categorical__season_2016,-0.001155316732327566
+categorical__venue_Feroz Shah Kotla,-0.0013546186801005838
+numeric__team_b_runs_per_match,-0.001492526195415468
+categorical__venue_Subrata Roy Sahara Stadium,-0.0016605324862190094
+numeric__team_a_bowling_economy,-0.0017108858031830707
+categorical__venue_SuperSport Park,-0.0019078333735665107
+"categorical__venue_Sardar Patel Stadium, Motera",-0.0019713032280513324
+categorical__team_a_Punjab Kings,-0.0022013305068423967
+numeric__economy_diff,-0.002470661964765735
+categorical__venue_M.Chinnaswamy Stadium,-0.0024720981551572276
+categorical__venue_Sharjah Cricket Stadium,-0.0026751364074591995
+categorical__venue_St George's Park,-0.003086398926953417
+categorical__season_2014,-0.0032446357611916033
+categorical__season_2015,-0.003294259985894145
+categorical__venue_Saurashtra Cricket Association Stadium,-0.0033700015345092633
+"categorical__venue_Punjab Cricket Association IS Bindra Stadium, Mohali",-0.0035699421296482505
+categorical__venue_Sheikh Zayed Stadium,-0.0036620982241383814
+categorical__team_a_Royal Challengers Bengaluru,-0.0036889794560602336
+categorical__venue_Dr DY Patil Sports Academy,-0.003738622406955261
+categorical__team_b_Deccan Chargers,-0.0039769001966246
+categorical__venue_Dubai International Cricket Stadium,-0.0041706199884375215
+numeric__toss_decision_field,-0.004421707000608789
+numeric__toss_decision_bat,-0.004421707000608821
+categorical__season_2009/10,-0.004933868015228064
+numeric__team_b_wickets_per_match,-0.004996002881797862
+numeric__team_b_h2h_wins,-0.005171740502359434
+numeric__team_a_h2h_win_rate,-0.005342399596033693
+categorical__team_a_Gujarat Lions,-0.005593179846970391
+categorical__team_a_Rajasthan Royals,-0.0064973147250697435
+categorical__team_a_Sunrisers Hyderabad,-0.0065094178547816075
+categorical__venue_Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium,-0.006637924572336085
+categorical__team_b_Pune Warriors,-0.006924689275400895
+numeric__team_b_runs_conceded_per_match,-0.007881306998407944
+categorical__team_b_Mumbai Indians,-0.008904966817896005
+"categorical__venue_MA Chidambaram Stadium, Chepauk",-0.010694184644020437
+numeric__h2h_matches_before,-0.011332806899170721
+categorical__venue_Sawai Mansingh Stadium,-0.01182609062083684
+categorical__team_a_Pune Warriors,-0.012616952746189632
+numeric__venue_avg_first_innings,-0.012703260512995912
+numeric__team_a_h2h_wins,-0.01333103012447896
+numeric__experience_diff,-0.017149163399149757
+numeric__team_b_bowling_economy,-0.01852672872625576

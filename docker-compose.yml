@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ipl_intelligence
+      POSTGRES_USER: ipl_user
+      POSTGRES_PASSWORD: ipl_password
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg2://ipl_user:ipl_password@db:5432/ipl_intelligence
+    ports: ["8000:8000"]
+    depends_on: [db]
+  web:
+    image: node:20
+    working_dir: /app
+    volumes: ["./frontend:/app"]
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    ports: ["5173:5173"]
+    depends_on: [api]
+volumes:
+  pgdata:

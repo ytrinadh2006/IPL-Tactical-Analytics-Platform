@@ -1,0 +1,11 @@
+{
+  "accuracy": 0.4977,
+  "roc_auc": 0.4977,
+  "features": [
+    "team1_win_rate",
+    "team2_win_rate",
+    "venue_chase_rate",
+    "toss_team1",
+    "field_first"
+  ]
+}
