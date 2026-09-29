@@ -300,6 +300,17 @@ The current application can be extended with:
 - Model experiment tracking with MLflow
 - Improved responsive dashboards and richer visual exploration
 
+## Dashboard Preview
+
+### Main Dashboard
+![IPL Intelligence Dashboard](output/screenshots/dashboard.png)
+
+### Analysis Snapshots
+![IPL Analysis Snapshots](output/screenshots/analysis-snapshots.png)
+
+### ML Match Prediction
+![ML Match Prediction](output/screenshots/ml-prediction.png)
+
 ## Author
 
 Trinadh Reddy
