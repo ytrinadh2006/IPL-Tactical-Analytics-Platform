@@ -26,11 +26,25 @@ def summary():
 @router.get("/teams")
 def teams(): return clean(read("team_stats.csv").to_dict("records"))
 
+_DELIVERIES_CACHE = None
+_MODEL_PACK = None
+
+def get_model_pack():
+    global _MODEL_PACK
+    if _MODEL_PACK is None:
+        _MODEL_PACK = joblib.load(ROOT / "models/match_winner_model.joblib")
+    return _MODEL_PACK
+
 def load_deliveries():
+    global _DELIVERIES_CACHE
+    if _DELIVERIES_CACHE is not None:
+        return _DELIVERIES_CACHE
     raw = ROOT / "data/raw/deliveries.csv"
     if raw.exists():
-        return pd.read_csv(raw)
-    return pd.read_csv(DATA / "deliveries_enriched.csv")
+        _DELIVERIES_CACHE = pd.read_csv(raw, low_memory=False)
+    else:
+        _DELIVERIES_CACHE = pd.read_csv(DATA / "deliveries_enriched.csv", low_memory=False)
+    return _DELIVERIES_CACHE
 
 @router.get("/team-analytics")
 def team_analytics():
@@ -126,7 +140,7 @@ def predict(req: PredictionRequest):
     t1_rate = t1_rate if t1_rate is not None else 0.5
     t2_rate = t2_rate if t2_rate is not None else 0.5
 
-    pack = joblib.load(ROOT / "models/match_winner_model.joblib")
+    pack = get_model_pack()
     X = pd.DataFrame([[t1_rate, t2_rate, v_rate, req.toss_team1, req.field_first]], columns=pack["features"])
     p = float(pack["model"].predict_proba(X)[0, 1])
     res = {
@@ -186,7 +200,7 @@ def strengths(player:str):
 
 @router.post("/explain")
 def explain(req:PredictionRequest):
-    pack=joblib.load(ROOT/"models/match_winner_model.joblib")
+    pack=get_model_pack()
     X=pd.DataFrame([[req.team1_win_rate,req.team2_win_rate,req.venue_chase_rate,req.toss_team1,req.field_first]],columns=pack["features"])
     try:
         import shap
