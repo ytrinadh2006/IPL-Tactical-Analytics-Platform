@@ -13,4 +13,6 @@ jobs:
 
       - run: pip install -r requirements.txt
       - run: python -m compileall backend src scripts
-      - run: pytest -q
+      - run: python -m pytest -q
+        env:
+          PYTHONPATH: .
