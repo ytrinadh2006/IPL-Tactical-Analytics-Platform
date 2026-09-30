@@ -1,6 +1,6 @@
 {
-  "accuracy": 0.4977,
-  "roc_auc": 0.4977,
+  "accuracy": 0.4618,
+  "roc_auc": 0.4888,
   "features": [
     "team1_win_rate",
     "team2_win_rate",

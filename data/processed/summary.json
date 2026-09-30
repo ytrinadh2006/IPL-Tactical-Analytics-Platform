@@ -1,11 +1,11 @@
 {
-  "matches":1095,
-  "deliveries":260920,
-  "players_batting":673,
-  "players_bowling":530,
+  "matches":1243,
+  "deliveries":295732,
+  "players_batting":738,
+  "players_bowling":577,
   "teams":15,
-  "venues":58,
-  "legal_balls":251471,
-  "bowler_wickets":11815,
-  "batting_dismissals":12935
+  "venues":60,
+  "legal_balls":284658,
+  "bowler_wickets":13482,
+  "batting_dismissals":14686
 }

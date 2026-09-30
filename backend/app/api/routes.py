@@ -26,9 +26,15 @@ def summary():
 @router.get("/teams")
 def teams(): return clean(read("team_stats.csv").to_dict("records"))
 
+def load_deliveries():
+    raw = ROOT / "data/raw/deliveries.csv"
+    if raw.exists():
+        return pd.read_csv(raw)
+    return pd.read_csv(DATA / "deliveries_enriched.csv")
+
 @router.get("/team-analytics")
 def team_analytics():
-    d=pd.read_csv(ROOT/"data/raw/deliveries.csv")
+    d = load_deliveries()
     batting=d.groupby("batting_team").agg(runs=("batsman_runs","sum"),balls=("match_id","size"),boundaries=("batsman_runs",lambda x:((x==4)|(x==6)).sum())).reset_index().rename(columns={"batting_team":"team"})
     batting["strike_rate"]=np.where(batting.balls,batting.runs/batting.balls*100,0)
     bowling=d.groupby("bowling_team").agg(runs_conceded=("total_runs","sum"),balls=("match_id","size"),wickets=("is_wicket","sum"),dot_balls=("total_runs",lambda x:(x==0).sum())).reset_index().rename(columns={"bowling_team":"team"})
@@ -46,7 +52,7 @@ def team(team:str):
 def compare(team_a:str,team_b:str):
     df=read("team_stats.csv"); a=df[df.team.str.lower()==team_a.lower()]; b=df[df.team.str.lower()==team_b.lower()]
     if a.empty or b.empty: raise HTTPException(404,"One or both teams not found")
-    d=pd.read_csv(ROOT/"data/raw/deliveries.csv")
+    d = load_deliveries()
     ba=d.groupby("batting_team").agg(runs=("batsman_runs","sum"),balls=("match_id","size"),fours=("batsman_runs",lambda x:(x==4).sum()),sixes=("batsman_runs",lambda x:(x==6).sum())).reset_index().rename(columns={"batting_team":"team"})
     ba["strike_rate"]=np.where(ba.balls,ba.runs/ba.balls*100,0)
     bo=d.groupby("bowling_team").agg(runs_conceded=("total_runs","sum"),balls=("match_id","size"),wickets=("is_wicket","sum"),dot_balls=("total_runs",lambda x:(x==0).sum())).reset_index().rename(columns={"bowling_team":"team"})
@@ -84,19 +90,80 @@ def venue(venue:str):
     if x.empty: raise HTTPException(404,"Venue not found")
     return clean(x.iloc[0].to_dict())
 
+from typing import Optional
+
 class PredictionRequest(BaseModel):
-    team1_win_rate: float
-    team2_win_rate: float
-    venue_chase_rate: float=0.5
-    toss_team1: int=1
-    field_first: int=1
+    team1_win_rate: Optional[float] = None
+    team2_win_rate: Optional[float] = None
+    venue_chase_rate: Optional[float] = 0.5
+    toss_team1: int = 1
+    field_first: int = 1
+    team_a: Optional[str] = None
+    team_b: Optional[str] = None
+    venue: Optional[str] = None
+    season: Optional[str] = None
 
 @router.post("/predict")
-def predict(req:PredictionRequest):
-    pack=joblib.load(ROOT/"models/match_winner_model.joblib")
-    X=pd.DataFrame([[req.team1_win_rate,req.team2_win_rate,req.venue_chase_rate,req.toss_team1,req.field_first]],columns=pack["features"])
-    p=float(pack["model"].predict_proba(X)[0,1])
-    return {"team1_win_probability":round(p*100,2),"team2_win_probability":round((1-p)*100,2),"note":"Historical model estimate, not a guarantee."}
+def predict(req: PredictionRequest):
+    t1_rate = req.team1_win_rate
+    t2_rate = req.team2_win_rate
+    v_rate = req.venue_chase_rate if req.venue_chase_rate is not None else 0.5
+
+    if req.team_a and req.team_b:
+        df_teams = read("team_stats.csv")
+        r_a = df_teams[df_teams.team.str.lower() == req.team_a.lower()]
+        r_b = df_teams[df_teams.team.str.lower() == req.team_b.lower()]
+        if not r_a.empty and t1_rate is None:
+            t1_rate = float(r_a.iloc[0]["win_pct"]) / 100.0
+        if not r_b.empty and t2_rate is None:
+            t2_rate = float(r_b.iloc[0]["win_pct"]) / 100.0
+        if req.venue:
+            df_ven = read("venue_stats.csv")
+            r_v = df_ven[df_ven.venue.str.lower() == req.venue.lower()]
+            if not r_v.empty:
+                v_rate = float(r_v.iloc[0]["chasing_win_pct"]) / 100.0
+
+    t1_rate = t1_rate if t1_rate is not None else 0.5
+    t2_rate = t2_rate if t2_rate is not None else 0.5
+
+    pack = joblib.load(ROOT / "models/match_winner_model.joblib")
+    X = pd.DataFrame([[t1_rate, t2_rate, v_rate, req.toss_team1, req.field_first]], columns=pack["features"])
+    p = float(pack["model"].predict_proba(X)[0, 1])
+    res = {
+        "team1_win_probability": round(p * 100, 2),
+        "team2_win_probability": round((1 - p) * 100, 2),
+        "team_a_probability": round(p, 4),
+        "team_b_probability": round(1 - p, 4),
+        "note": "Historical model estimate, not a guarantee."
+    }
+    if req.team_a:
+        res["team_a"] = req.team_a
+    if req.team_b:
+        res["team_b"] = req.team_b
+    if req.venue:
+        res["venue"] = req.venue
+    return res
+
+@router.get("/batting")
+def batting(limit: int = 50, sort_by: str = "runs"):
+    df = read("batting_stats.csv")
+    if sort_by in df.columns:
+        df = df.sort_values(sort_by, ascending=False)
+    return clean(df.head(limit).to_dict("records"))
+
+@router.get("/bowling")
+def bowling(limit: int = 50, sort_by: str = "wickets"):
+    df = read("bowling_stats.csv")
+    if sort_by in df.columns:
+        df = df.sort_values(sort_by, ascending=False)
+    return clean(df.head(limit).to_dict("records"))
+
+@router.get("/fielding")
+def fielding(limit: int = 50, sort_by: str = "dismissals"):
+    df = read("fielding_stats.csv")
+    if sort_by in df.columns:
+        df = df.sort_values(sort_by, ascending=False)
+    return clean(df.head(limit).to_dict("records"))
 
 @router.get("/model/metrics")
 def model_metrics():

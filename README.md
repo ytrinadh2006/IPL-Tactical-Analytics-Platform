@@ -1,20 +1,21 @@
-# IPL Intelligence & Tactical Analytics Platform
+# IPL Intelligence & Tactical Analytics Platform (2008 – 2026)
 
-A practical IPL analytics project built around historical match and ball-by-ball data. The project started as a small Python analysis and was expanded into a data pipeline, analytical layer, machine-learning service, PostgreSQL-ready backend and React dashboard.
+A practical IPL analytics project built around historical match and ball-by-ball data, fully updated through the **2025 and 2026 seasons** (1,243 matches, 295,732 deliveries). The project provides an end-to-end data pipeline, analytical layer, machine-learning match winner prediction service, FastAPI backend and modern React dashboard.
 
 The main idea is simple: instead of only showing cricket scores, the project uses historical data to answer questions such as **what happened, how players and teams performed, how matchups behaved, what venues looked like historically, and what a model estimates for a future matchup**.
 
 ## What the project covers
 
 ### Data pipeline
-- Raw CSV ingestion
+- Automated ingestion of 2008–2026 official match & delivery data
+- Raw CSV validation (`matches.csv` and `deliveries.csv`)
 - Column and schema checks
 - Missing-value handling
 - Numeric conversion
 - Date parsing
-- Basic entity cleanup
+- Franchise entity cleanup (e.g. RCB, PBKS, DC renames)
 - Enriched delivery dataset
-- Reproducible feature-building scripts
+- Reproducible feature-building scripts (`scripts/build_features.py`, `src/ml_features_advanced.py`)
 
 ### Player analytics
 Batting analysis includes:
@@ -258,7 +259,7 @@ docker compose up --build
 ```
 
 ## API examples
-
+ 
 ```text
 GET  /api/summary
 GET  /api/teams
@@ -266,6 +267,9 @@ GET  /api/teams/{team}
 GET  /api/teams/compare/{team_a}/{team_b}
 GET  /api/players
 GET  /api/players/{player}
+GET  /api/batting
+GET  /api/bowling
+GET  /api/fielding
 GET  /api/matchups/{batter}/{bowler}
 GET  /api/venues
 GET  /api/venues/{venue}
