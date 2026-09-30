@@ -306,14 +306,17 @@ The current application can be extended with:
 
 ## Dashboard Preview
 
-### Main Dashboard
+### Main Dashboard (2008 – 2026)
 ![IPL Intelligence Dashboard](output/screenshots/dashboard.png)
-
-### Analysis Snapshots
-![IPL Analysis Snapshots](output/screenshots/analysis-snapshots.png)
 
 ### ML Match Prediction
 ![ML Match Prediction](output/screenshots/ml-prediction.png)
+
+### Team Comparison & Head-to-Head
+![IPL Team Comparison](output/screenshots/team%20comparision.png)
+
+### Analysis Snapshots
+![IPL Analysis Snapshots](output/screenshots/analysis-snapshots.png)
 
 ## Author
 
