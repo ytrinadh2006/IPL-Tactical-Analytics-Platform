@@ -313,7 +313,7 @@ The current application can be extended with:
 ![ML Match Prediction](output/screenshots/ml-prediction.png)
 
 ### Team Comparison & Head-to-Head
-![IPL Team Comparison](output/screenshots/team%20comparision.png)
+![IPL Team Comparison](output/screenshots/team-comparison.png)
 
 ### Analysis Snapshots
 ![IPL Analysis Snapshots](output/screenshots/analysis-snapshots.png)
